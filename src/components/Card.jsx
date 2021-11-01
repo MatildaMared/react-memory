@@ -5,30 +5,23 @@ import { Context } from "../context/Context";
 function Card({ card, handleChoice, flipped }) {
 	const [context, setContext] = useContext(Context);
 	const handleClick = () => {
+		if (context.disabled === true) return;
 		handleChoice(card);
 	};
 
 	return (
 		<CardWrapper>
-			<CardVariants>
-				<CardFront
-					className={flipped ? "flipped" : ""}
-					src={card.src}
-					alt="card front"
-				/>
-				<CardBack
-					onClick={handleClick}
-					src={context.coverSrc}
-					alt="card back"
-				/>
-			</CardVariants>
+			<CardFront
+				className={flipped ? "flipped" : ""}
+				src={card.src}
+				alt="card front"
+			/>
+			<CardBack onClick={handleClick} src={context.coverSrc} alt="card back" />
 		</CardWrapper>
 	);
 }
 
-const CardWrapper = styled.div``;
-
-const CardVariants = styled.div`
+const CardWrapper = styled.div`
 	position: relative;
 	& img {
 		width: 100%;

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
+import Button from "./Button";
 
 function Modal(props) {
 	if (!props.show) return null;
@@ -17,7 +19,7 @@ function Modal(props) {
 		};
 	}, []);
 
-	return (
+	return createPortal(
 		<Overlay onClick={props.onClose}>
 			<ModalWrapper
 				onClick={(e) => {
@@ -25,14 +27,15 @@ function Modal(props) {
 				}}
 			>
 				{props.children}
-				<button onClick={props.onClose}>Close</button>
+				<Button onClick={props.onClose}>Close</Button>
 			</ModalWrapper>
-		</Overlay>
+		</Overlay>,
+		document.getElementById("modal")
 	);
 }
 
 const Overlay = styled.div`
-	z-index: 4;
+	z-index: 10000;
 	position: fixed;
 	top: 0;
 	left: 0;

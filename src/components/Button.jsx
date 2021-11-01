@@ -15,6 +15,7 @@ const Wrapper = styled.button`
 	font-size: 1rem;
 	padding: 8px 16px;
 	border-radius: 8px;
+	margin-top: 16px;
 
 	&:hover {
 		background-color: mediumpurple;

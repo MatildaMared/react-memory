@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
 		coverSrc: "/img/cover-1.jpeg",
 		firstChoice: null,
 		secondChoice: null,
+		disabled: false,
 	});
 
 	function updateContext(updates) {

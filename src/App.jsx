@@ -20,14 +20,15 @@ function App() {
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
-			console.log("You have chosen two cards");
 			compareCards();
 		}
 	}, [firstChoice, secondChoice]);
 
+	useEffect(() => {
+		startNewGame();
+	}, []);
+
 	function startNewGame() {
-		console.log("Starting new game... 🎮");
-		// Create array of cards and shuffle the order of the cards so it's randomized
 		const shuffledCards = [...cardImages, ...cardImages]
 			.sort(() => Math.random() - 0.5)
 			.map((card) => ({ ...card, id: Math.random() }));
@@ -46,8 +47,11 @@ function App() {
 	}
 
 	function compareCards() {
+		updateContext({
+			disabled: true,
+		});
+
 		if (firstChoice.src === secondChoice.src) {
-			console.log("It's a match! 👑 Good work!");
 			updateContext({
 				cards: cards.map((card) => {
 					if (card.src === firstChoice.src) {
@@ -57,12 +61,14 @@ function App() {
 					}
 				}),
 			});
-		} else {
-			console.log("Not a match this time... 😵‍💫");
-		}
-		setTimeout(() => {
 			resetCards();
-		}, 1000);
+		} else {
+			setTimeout(() => {
+				resetCards();
+			}, 1000);
+		}
+
+		updateContext();
 	}
 
 	function resetCards() {
@@ -70,6 +76,7 @@ function App() {
 			firstChoice: null,
 			secondChoice: null,
 			turns: turns + 1,
+			disabled: false,
 		});
 	}
 
@@ -77,11 +84,10 @@ function App() {
 		<>
 			<Header />
 			<Wrapper>
-				<Heading>An amazing memory game.</Heading>
-				<Button onClick={startNewGame}>Start Game</Button>
 				{cards.length > 0 && (
 					<CardGrid handleChoice={handleChoice} cards={cards} />
 				)}
+				<Button onClick={startNewGame}>Start Game</Button>
 			</Wrapper>
 		</>
 	);

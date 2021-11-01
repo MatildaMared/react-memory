@@ -29,6 +29,7 @@ const Wrapper = styled.section`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 16px;
+	padding: 0 16px;
 `;
 
 export default CardGrid;
