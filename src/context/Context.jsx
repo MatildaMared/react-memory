@@ -4,7 +4,11 @@ export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
 	const [context, setContext] = useState({
+		cards: [],
+		turns: 0,
 		coverSrc: "/img/cover-1.jpeg",
+		firstChoice: null,
+		secondChoice: null,
 	});
 
 	function updateContext(updates) {

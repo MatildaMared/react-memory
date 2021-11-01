@@ -1,23 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import CardGrid from "./components/CardGrid";
 import Header from "./components/Header";
+import { Context } from "./context/Context";
 
 const cardImages = [
-	{ src: "/img/helmet-1.png" },
-	{ src: "/img/potion-1.png" },
-	{ src: "/img/ring-1.png" },
-	{ src: "/img/scroll-1.png" },
-	{ src: "/img/shield-1.png" },
-	{ src: "/img/sword-1.png" },
+	{ src: "/img/helmet-1.png", matched: false },
+	{ src: "/img/potion-1.png", matched: false },
+	{ src: "/img/ring-1.png", matched: false },
+	{ src: "/img/scroll-1.png", matched: false },
+	{ src: "/img/shield-1.png", matched: false },
+	{ src: "/img/sword-1.png", matched: false },
 ];
 
 function App() {
-	const [cards, setCards] = useState([]);
-	const [turns, setTurns] = useState(0);
-	const [firstChoice, setFirstChoice] = useState(null);
-	const [secondChoice, setSecondChoice] = useState(null);
+	const [context, updateContext] = useContext(Context);
+	const { firstChoice, secondChoice, cards, turns } = context;
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
@@ -33,33 +32,50 @@ function App() {
 			.sort(() => Math.random() - 0.5)
 			.map((card) => ({ ...card, id: Math.random() }));
 
-		setCards(shuffledCards);
-		setTurns(0);
+		updateContext({
+			cards: shuffledCards,
+			turns: 0,
+		});
 	}
 
 	function handleChoice(card) {
 		if (card.id === firstChoice?.id || card.id === secondChoice?.id) return;
-		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+		firstChoice
+			? updateContext({ secondChoice: card })
+			: updateContext({ firstChoice: card });
 	}
 
 	function compareCards() {
 		if (firstChoice.src === secondChoice.src) {
 			console.log("It's a match! 👑 Good work!");
+			updateContext({
+				cards: cards.map((card) => {
+					if (card.src === firstChoice.src) {
+						return { ...card, matched: true };
+					} else {
+						return card;
+					}
+				}),
+			});
 		} else {
 			console.log("Not a match this time... 😵‍💫");
 		}
-		resetCards();
+		setTimeout(() => {
+			resetCards();
+		}, 1000);
 	}
 
 	function resetCards() {
-		setFirstChoice(null);
-		setSecondChoice(null);
-		setTurns(turns + 1);
+		updateContext({
+			firstChoice: null,
+			secondChoice: null,
+			turns: turns + 1,
+		});
 	}
 
 	return (
-    <>
-      <Header />
+		<>
+			<Header />
 			<Wrapper>
 				<Heading>An amazing memory game.</Heading>
 				<Button onClick={startNewGame}>Start Game</Button>
