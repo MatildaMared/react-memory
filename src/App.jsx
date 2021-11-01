@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import CardGrid from "./components/CardGrid";
@@ -15,8 +15,17 @@ const cardImages = [
 function App() {
 	const [cards, setCards] = useState([]);
 	const [turns, setTurns] = useState(0);
+	const [firstChoice, setFirstChoice] = useState(null);
+	const [secondChoice, setSecondChoice] = useState(null);
 
-	const startNewGame = () => {
+	useEffect(() => {
+		if (firstChoice && secondChoice) {
+			console.log("You have chosen two cards");
+			compareCards();
+		}
+	}, [firstChoice, secondChoice]);
+
+	function startNewGame() {
 		console.log("Starting new game... 🎮");
 		// Create array of cards and shuffle the order of the cards so it's randomized
 		const shuffledCards = [...cardImages, ...cardImages]
@@ -25,15 +34,35 @@ function App() {
 
 		setCards(shuffledCards);
 		setTurns(0);
-	};
+	}
 
-	console.log(cards, turns);
+	function handleChoice(card) {
+		if (card.id === firstChoice?.id || card.id === secondChoice?.id) return;
+		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+	}
+
+	function compareCards() {
+		if (firstChoice.src === secondChoice.src) {
+			console.log("It's a match! 👑 Good work!");
+		} else {
+			console.log("Not a match this time... 😵‍💫");
+		}
+		resetCards();
+	}
+
+	function resetCards() {
+		setFirstChoice(null);
+		setSecondChoice(null);
+		setTurns(turns + 1);
+	}
 
 	return (
 		<Wrapper>
 			<Heading>An amazing memory game.</Heading>
 			<Button onClick={startNewGame}>Start Game</Button>
-			{cards.length > 0 && <CardGrid cards={cards} />}
+			{cards.length > 0 && (
+				<CardGrid handleChoice={handleChoice} cards={cards} />
+			)}
 		</Wrapper>
 	);
 }
