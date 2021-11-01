@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import CardGrid from "./components/CardGrid";
+import Header from "./components/Header";
 
 const cardImages = [
 	{ src: "/img/helmet-1.png" },
@@ -57,13 +58,16 @@ function App() {
 	}
 
 	return (
-		<Wrapper>
-			<Heading>An amazing memory game.</Heading>
-			<Button onClick={startNewGame}>Start Game</Button>
-			{cards.length > 0 && (
-				<CardGrid handleChoice={handleChoice} cards={cards} />
-			)}
-		</Wrapper>
+    <>
+      <Header />
+			<Wrapper>
+				<Heading>An amazing memory game.</Heading>
+				<Button onClick={startNewGame}>Start Game</Button>
+				{cards.length > 0 && (
+					<CardGrid handleChoice={handleChoice} cards={cards} />
+				)}
+			</Wrapper>
+		</>
 	);
 }
 

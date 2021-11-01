@@ -8,6 +8,12 @@ export default createGlobalStyle`
 
   --color-dark: hsla(0, 0%, 9%, 1.0);
   --color-light: hsla(0, 0%, 90%, 1.0);
+
+  
+  --shadow-color: hsla(0, 0%, 20%, .4);
+  --shadow: 1px 2px 2px var(--shadow-color), 2px 4px 4px var(--shadow-color),
+		4px 8px 8px var(--shadow-color), 8px 16px 16px var(--shadow-color),
+		16px 32px 32px var(--shadow-color);
 }
 
   /* Box sizing rules */
@@ -50,6 +56,7 @@ body {
   background-color: var(--color-dark);
   font-family: var(--font-primary);
   color: var(--color-light);
+  font-weight: 300;
 }
 
 /* A elements that don't have a class get default styles */
