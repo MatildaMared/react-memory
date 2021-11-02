@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Context } from "../context/Context";
 
-function CoverPicker() {
+function Settings() {
 	const [context, updateContext] = useContext(Context);
 	const covers = [
 		{ src: "/img/cover-1.jpeg", id: Math.random() },
@@ -20,8 +20,8 @@ function CoverPicker() {
 	};
 
 	return (
-    <div>
-      <h1>Pick a cover</h1>
+		<div>
+			<h1>Pick a cover</h1>
 			<Covers>
 				{covers.map((cover) => (
 					<Cover
@@ -47,7 +47,7 @@ const Covers = styled.div`
 
 const Cover = styled.img`
 	border: 4px solid transparent;
-  width: 100%;
+	width: 100%;
 	max-width: 200px;
 	height: auto;
 	border-radius: 16px;
@@ -66,4 +66,4 @@ const Cover = styled.img`
 	}
 `;
 
-export default CoverPicker;
+export default Settings;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import CoverPicker from "./CoverPicker";
+import CoverPicker from "./Settings";
 import styled from "styled-components";
 
 function Menu({ show }) {
@@ -38,6 +38,8 @@ const MenuContent = styled.nav`
 	background-color: hsla(0, 0%, 9%, 0.8);
 	position: absolute;
 	width: 100%;
+	display: flex;
+	justify-content: flex-end;
 
 	&.show {
 		transform: scale(1, 1);
@@ -46,7 +48,6 @@ const MenuContent = styled.nav`
 
 const List = styled.ul`
 	list-style-type: none;
-	display: inline-block;
 	margin: 0;
 	padding: 0;
 `;

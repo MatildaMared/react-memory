@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import CoverPicker from "./CoverPicker";
-import Menu from "./Menu";
+import Settings from "./Settings";
+import Modal from "./Modal";
+import { Settings as SettingsIcon } from "react-feather";
 
 function Header() {
-	const [showMenu, setShowMenu] = useState(false);
+	const [displaySettings, setDisplaySettings] = useState(false);
 
-	function clickHandler() {
-		setShowMenu(!showMenu);
+	function toggleSettingsModal() {
+		setDisplaySettings(!displaySettings);
 	}
 
 	return (
-		<Wrapper>
-			<HeaderContent>
+		<>
+			<Wrapper>
 				<Heading>AniMemory 🐨</Heading>
-				<MenuToggler onClick={clickHandler}>
-					<HamburgerIcon className={showMenu ? "show-cross" : ""} />
-				</MenuToggler>
-			</HeaderContent>
-			<Menu show={showMenu} />
-		</Wrapper>
+				<SettingsBtn onClick={toggleSettingsModal}>
+					<SettingsIcon size={35} />
+				</SettingsBtn>
+			</Wrapper>
+			<Modal
+				show={displaySettings}
+				onClose={() => {
+					setDisplaySettings(false);
+				}}
+			>
+				<Settings />
+			</Modal>
+		</>
 	);
 }
 
@@ -32,94 +40,32 @@ const Wrapper = styled.header`
 	background-color: hsla(0, 0%, 9%, 0.8);
 	padding: 0 16px;
 	vertical-align: baseline;
-`;
-
-const HeaderContent = styled.div`
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-start;
+	align-items: center;
 `;
 
 const Heading = styled.h1`
 	font-weight: 800;
 	font-size: 2.3rem;
+	user-select: none;
+	cursor: default;
 `;
 
-const MenuToggler = styled.div`
-	margin-top: 12px;
-	display: inline-block;
-	width: 30px;
-	height: 30px;
+const SettingsBtn = styled.button`
+	background: transparent;
+	border: none;
 	cursor: pointer;
-`;
-
-const HamburgerIcon = styled.span`
-	background-color: var(--color-light);
-	display: inline-block;
-	width: 30px;
-	height: 2px;
-	transition: all 0.4s;
-	border-radius: 4px;
-	position: relative;
-
-	&::before {
-		content: "";
-		width: 30px;
-		height: 2px;
-		position: absolute;
-		background-color: var(--color-light);
-		top: 8px;
-	}
-
-	&::after {
-		content: "";
-		width: 30px;
-		height: 2px;
-		position: absolute;
-		background-color: var(--color-light);
-		bottom: 8px;
-	}
-
-	&.show-cross {
-		transform: rotate(135deg);
-
-		&::before,
-		&::after {
-			top: 0;
-			transform: rotate(90deg);
-			border-radius: 4px;
-			}
-		}
-	}
-`;
-
-// const MenuCheckbox = styled.input`
-// 	display: none;
-
-// 	&:checked + ${MenuLabel} > ${Hamburger} {
-// 	transform: rotate(135deg);
-
-// 	&::before,
-// 	&::after {
-// 		top: 0;
-// 		transform: rotate(90deg);
-// 		border-radius: 4px;
-// 	}
-// }
-
-// 	&:checked ~ ${List} {
-// 		transform: scaleY(1);
-// 	}
-// `;
-
-const Item = styled.li`
-	color: inherit;
-	border-bottom: 2px solid transparent;
-	text-decoration: none;
-	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	color: var(--color-light);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s;
 
 	&:hover {
-		border-bottom: 2px solid var(--color-light);
+		transform: scale(1.2) rotate(35deg);
 	}
 `;
 
