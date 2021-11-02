@@ -43,8 +43,9 @@ const Overlay = styled.div`
 	bottom: 0;
 	background-color: hsla(0, 0%, 0%, 0.75);
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
+	margin-top: 64px;
 `;
 
 const ModalWrapper = styled.div`
@@ -53,6 +54,10 @@ const ModalWrapper = styled.div`
 	padding: 32px;
 	border-radius: 16px;
 	min-width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `;
 
 export default Modal;

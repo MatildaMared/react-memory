@@ -28,8 +28,16 @@ function App() {
 		startNewGame();
 	}, []);
 
+	useEffect(() => {
+		startNewGame();g
+	}, [context.numOfPairs]);
+
 	function startNewGame() {
-		const shuffledCards = [...cardImages, ...cardImages]
+		const cards = [];
+		for (let i = 0; i < context.numOfPairs; i++) {
+			cards.push(context.cardImages[i]);
+		}
+		const shuffledCards = [...cards, ...cards]
 			.sort(() => Math.random() - 0.5)
 			.map((card) => ({ ...card, id: Math.random() }));
 

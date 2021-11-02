@@ -7,7 +7,8 @@ export default createGlobalStyle`
   --font-primary: "Inter", sans-serif;
 
   --color-dark: hsla(0, 0%, 9%, 1.0);
-  --color-light: hsla(0, 0%, 90%, 1.0);
+  --color-light: hsla(0, 0%, 85%, 1.0);
+  --color-grey: hsla(0, 0%, 65%, 1.0);
 
   
   --shadow-color: hsla(0, 0%, 20%, .4);
