@@ -49,6 +49,7 @@ const Overlay = styled.div`
 `;
 
 const ModalWrapper = styled.div`
+	z-index: 1000;
 	margin: 16px;
 	background-color: var(--color-dark);
 	padding: 32px;

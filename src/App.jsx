@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import CardGrid from "./components/CardGrid";
 import Header from "./components/Header";
+import Modal from "./components/Modal";
+import WinnerMessage from "./components/WinnerMessage";
 import { Context } from "./context/Context";
 
 const cardImages = [
@@ -17,6 +19,7 @@ const cardImages = [
 function App() {
 	const [context, updateContext] = useContext(Context);
 	const { firstChoice, secondChoice, cards, turns } = context;
+	const [displayWinner, setDisplayWinner] = useState(false);
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
@@ -29,10 +32,15 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		startNewGame();g
+		checkForWinner();
+	}, [context.turns]);
+
+	useEffect(() => {
+		startNewGame();
 	}, [context.numOfPairs]);
 
 	function startNewGame() {
+		setDisplayWinner(false);
 		const cards = [];
 		for (let i = 0; i < context.numOfPairs; i++) {
 			cards.push(context.cardImages[i]);
@@ -43,6 +51,8 @@ function App() {
 
 		updateContext({
 			cards: shuffledCards,
+			firstChoice: null,
+			secondChoice: null,
 			turns: 0,
 		});
 	}
@@ -75,7 +85,6 @@ function App() {
 				resetCards();
 			}, 1000);
 		}
-
 		updateContext();
 	}
 
@@ -88,22 +97,47 @@ function App() {
 		});
 	}
 
+	function checkForWinner() {
+		let matches = 0;
+		for (const card of context.cards) {
+			if (card.matched === true) {
+				matches += 1;
+			}
+		}
+		if (matches === context.numOfPairs * 2) {
+			setTimeout(() => {
+				setDisplayWinner(true);
+			}, 1000);
+		}
+	}
+
 	return (
 		<>
 			<Header />
 			<Wrapper>
+				<Button onClick={startNewGame}>Start New Game</Button>
 				{cards.length > 0 && (
 					<CardGrid handleChoice={handleChoice} cards={cards} />
 				)}
-				<Button onClick={startNewGame}>Start Game</Button>
+				<Turns>Turns: {context.turns}</Turns>
 			</Wrapper>
+			<Modal
+				show={displayWinner}
+				onClose={() => {
+					setDisplayWinner(false);
+					startNewGame();
+				}}
+			>
+				<WinnerMessage />
+			</Modal>
 		</>
 	);
 }
 
 const Wrapper = styled.div`
-	max-width: 860px;
+	max-width: 800px;
 	margin: 40px auto;
+	margin-top: 56px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -113,6 +147,10 @@ const Heading = styled.h1`
 	font-size: 60px;
 	font-weight: 800;
 	letter-spacing: -1px;
+`;
+
+const Turns = styled.p`
+	margin-top: 16px;
 `;
 
 export default App;

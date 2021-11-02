@@ -53,6 +53,7 @@ const Heading = styled.h1`
 `;
 
 const SettingsBtn = styled.button`
+	margin-top: 8px;
 	background: transparent;
 	border: none;
 	cursor: pointer;

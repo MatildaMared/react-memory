@@ -9,6 +9,16 @@ function NumCardsPicker() {
 		<Wrapper>
 			<Buttons>
 				<Btn
+					className={context.numOfPairs === 4 ? "active" : ""}
+					onClick={() => {
+						updateContext({
+							numOfPairs: 4,
+						});
+					}}
+				>
+					<span>8</span>
+				</Btn>
+				<Btn
 					className={context.numOfPairs === 6 ? "active" : ""}
 					onClick={() => {
 						updateContext({
@@ -17,6 +27,16 @@ function NumCardsPicker() {
 					}}
 				>
 					<span>12</span>
+				</Btn>
+				<Btn
+					className={context.numOfPairs === 8 ? "active" : ""}
+					onClick={() => {
+						updateContext({
+							numOfPairs: 8,
+						});
+					}}
+				>
+					<span>16</span>
 				</Btn>
 				<Btn
 					className={context.numOfPairs === 12 ? "active" : ""}
@@ -41,14 +61,14 @@ const Wrapper = styled.div`
 
 const Buttons = styled.div`
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 16px;
-	max-width: 400px;
+	max-width: 600px;
 	margin: 0 auto;
 `;
 
 const Btn = styled.button`
-	border-radius: 8px;
+	border-radius: 16px;
 	opacity: 0.3;
 	width: 100%;
 	max-width: 200px;

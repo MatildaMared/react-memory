@@ -95,4 +95,8 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+#modal {
+  z-index: 10000000;
+}
 `;

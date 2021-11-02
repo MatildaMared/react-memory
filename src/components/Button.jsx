@@ -7,18 +7,21 @@ function Button(props) {
 
 const Wrapper = styled.button`
 	background: none;
-	border: 2px solid var(--color-light);
+	border: 2px solid var(--color-grey);
 	font: inherit;
-	color: inherit;
-	font-weight: 700;
+	color: var(--color-grey);
+	font-weight: 500;
 	cursor: pointer;
 	font-size: 1rem;
-	padding: 8px 16px;
+	padding: 6px 12px;
 	border-radius: 8px;
 	margin-top: 16px;
+	transition: all 0.3s;
 
 	&:hover {
-		background-color: mediumpurple;
+		border: 2px solid var(--color-light);
+		color: var(--color-light);
+		transform: scale(1.05);
 	}
 `;
 
