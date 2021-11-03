@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const Context = createContext();
 
@@ -26,6 +26,21 @@ export const ContextProvider = ({ children }) => {
 		secondChoice: null,
 		disabled: false,
 	});
+
+	useEffect(() => {
+		localStorage.setItem("cover", context.coverSrc);
+	}, [context.coverSrc]);
+
+	useEffect(() => {
+		let cover = localStorage.getItem("cover");
+		console.log(cover);
+		if (!cover) {
+			cover = "/img/cover-1.jpeg";
+		}
+		updateContext({
+			coverSrc: cover,
+		});
+	}, []);
 
 	function updateContext(updates) {
 		setContext((prevState) => {
