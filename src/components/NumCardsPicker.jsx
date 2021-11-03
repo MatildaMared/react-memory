@@ -39,14 +39,14 @@ function NumCardsPicker() {
 					<span>16</span>
 				</Btn>
 				<Btn
-					className={context.numOfPairs === 12 ? "active" : ""}
+					className={context.numOfPairs === 10 ? "active" : ""}
 					onClick={() => {
 						updateContext({
-							numOfPairs: 12,
+							numOfPairs: 10,
 						});
 					}}
 				>
-					<span>24</span>
+					<span>20</span>
 				</Btn>
 			</Buttons>
 		</Wrapper>
@@ -81,7 +81,7 @@ const Btn = styled.button`
 	& > span {
 		color: var(--color-light);
 		font-weight: 700;
-		font-size: 4rem;
+		font-size: 3rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -90,6 +90,10 @@ const Btn = styled.button`
 		left: 0;
 		bottom: 0;
 		right: 0;
+
+		@media (max-width: 600px) {
+			font-size: 2rem;
+		}
 	}
 
 	&.active {

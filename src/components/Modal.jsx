@@ -37,7 +37,7 @@ function Modal(props) {
 const Overlay = styled.div`
 	z-index: 10000;
 	position: fixed;
-	top: 0;
+	top: -6px;
 	left: 0;
 	right: 0;
 	bottom: 0;

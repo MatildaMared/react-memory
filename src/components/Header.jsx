@@ -16,7 +16,7 @@ function Header() {
 			<Wrapper>
 				<Heading>AniMemory 🐨</Heading>
 				<SettingsBtn onClick={toggleSettingsModal}>
-					<SettingsIcon size={35} />
+					<SettingsIcon size={32} />
 				</SettingsBtn>
 			</Wrapper>
 			<Modal
@@ -50,6 +50,10 @@ const Heading = styled.h1`
 	font-size: 2.3rem;
 	user-select: none;
 	cursor: default;
+
+	@media (max-width: 500px) {
+		font-size: 2rem;
+	}
 `;
 
 const SettingsBtn = styled.button`
@@ -57,8 +61,8 @@ const SettingsBtn = styled.button`
 	background: transparent;
 	border: none;
 	cursor: pointer;
-	width: 40px;
-	height: 40px;
+	width: 55px;
+	height: 50px;
 	color: var(--color-light);
 	display: flex;
 	align-items: center;
@@ -67,6 +71,14 @@ const SettingsBtn = styled.button`
 
 	&:hover {
 		transform: scale(1.2) rotate(35deg);
+	}
+
+	@media (max-width: 500px) {
+		transform: scale(1.3) translateX(8px);
+
+		&:hover {
+			transform: scale(1.5) translateX(8px) rotate(35deg);
+		}
 	}
 `;
 
