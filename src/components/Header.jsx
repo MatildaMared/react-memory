@@ -61,8 +61,6 @@ const SettingsBtn = styled.button`
 	background: transparent;
 	border: none;
 	cursor: pointer;
-	width: 55px;
-	height: 50px;
 	color: var(--color-light);
 	display: flex;
 	align-items: center;
@@ -74,10 +72,10 @@ const SettingsBtn = styled.button`
 	}
 
 	@media (max-width: 500px) {
-		transform: scale(1.3) translateX(8px);
+		transform: translateX(8px);
 
 		&:hover {
-			transform: scale(1.5) translateX(8px) rotate(35deg);
+			transform: translateX(8px) scale(1.2) rotate(35deg);
 		}
 	}
 `;
