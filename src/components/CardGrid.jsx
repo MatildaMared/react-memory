@@ -7,7 +7,7 @@ function CardGrid({ cards, handleChoice }) {
 	const [context, updateContext] = useContext(Context);
 
 	return (
-		<Wrapper className={context.numOfPairs === 12 ? "smaller-grid" : ""}>
+		<Wrapper className={context.numOfPairs >= 12 ? "smaller-grid" : ""}>
 			{cards.map((card) => (
 				<Card
 					handleChoice={handleChoice}
@@ -30,6 +30,10 @@ const Wrapper = styled.section`
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 16px;
 	padding: 0 16px;
+
+	@media (max-width: 500px) {
+		grid-gap: 8px;
+	}
 
 	&.smaller-grid {
 		grid-template-columns: repeat(6, 1fr);
