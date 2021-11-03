@@ -23,6 +23,9 @@ function Card({ card, handleChoice, flipped }) {
 
 const CardWrapper = styled.div`
 	position: relative;
+	transform: translateZ(-1000px);
+	transform-style: preserve-3d;
+
 	& img {
 		width: 100%;
 		display: block;
