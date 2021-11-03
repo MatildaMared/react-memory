@@ -35,9 +35,9 @@ function Modal(props) {
 }
 
 const Overlay = styled.div`
-	z-index: 10000;
+	z-index: 100;
 	position: fixed;
-	top: -6px;
+	top: 0px;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -45,12 +45,11 @@ const Overlay = styled.div`
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
-	margin-top: 64px;
 `;
 
 const ModalWrapper = styled.div`
-	z-index: 1000;
 	margin: 16px;
+	margin-top: 64px;
 	background-color: var(--color-dark);
 	padding: 32px;
 	border-radius: 16px;

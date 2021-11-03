@@ -32,11 +32,7 @@ function Header() {
 }
 
 const Wrapper = styled.header`
-	z-index: 10;
 	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
 	background-color: hsla(0, 0%, 9%, 0.8);
 	padding: 0 16px;
 	vertical-align: baseline;

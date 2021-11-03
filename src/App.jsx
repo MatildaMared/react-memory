@@ -136,8 +136,7 @@ function App() {
 
 const Wrapper = styled.div`
 	max-width: 800px;
-	margin: 40px auto;
-	margin-top: 56px;
+	margin: 20px auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
