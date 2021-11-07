@@ -28,19 +28,15 @@ export const ContextProvider = ({ children }) => {
 	});
 
 	useEffect(() => {
-		localStorage.setItem("cover", context.coverSrc);
-	}, [context.coverSrc]);
+		const savedCoverSrc = localStorage.getItem("cover");
+		if (savedCoverSrc !== null) {
+			updateContext({ coverSrc: savedCoverSrc });
+		}
+	}, []);
 
 	useEffect(() => {
-		let cover = localStorage.getItem("cover");
-		console.log(cover);
-		if (!cover) {
-			cover = "/img/cover-1.jpeg";
-		}
-		updateContext({
-			coverSrc: cover,
-		});
-	}, []);
+		localStorage.setItem("cover", context.coverSrc);
+	}, [context.coverSrc]);
 
 	function updateContext(updates) {
 		setContext((prevState) => {
