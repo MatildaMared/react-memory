@@ -15,7 +15,7 @@ function Header() {
 		<>
 			<Wrapper>
 				<Heading>AniMemory 🐨</Heading>
-				<SettingsBtn onClick={toggleSettingsModal}>
+				<SettingsBtn aria-label="Settings" onClick={toggleSettingsModal}>
 					<SettingsIcon size={32} />
 				</SettingsBtn>
 			</Wrapper>
