@@ -4,13 +4,15 @@
 	"start_url": "./",
 	"orientation": "any",
 	"theme_color": "#171717",
+	"background_color": "#171717",
 	"scope": "./",
 	"display": "standalone",
 	"icons": [
 		{
 			"src": "img/icon-512.png",
 			"sizes": "512x512",
-			"type": "image/png"
+			"type": "image/png",
+			"purpose": "maskable"
 		},
 		{
 			"src": "img/icon-192.png",
