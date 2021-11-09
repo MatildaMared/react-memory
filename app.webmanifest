@@ -1,11 +1,11 @@
 {
 	"name": "AniMemory",
 	"short_name": "AniMemory",
-	"start_url": "./",
+	"start_url": "/",
 	"orientation": "any",
 	"theme_color": "#171717",
 	"background_color": "#171717",
-	"scope": "./",
+	"scope": "/",
 	"display": "standalone",
 	"icons": [
 		{
