@@ -1,7 +1,7 @@
 {
 	"name": "AniMemory",
 	"short_name": "AniMemory",
-	"start_url": "/",
+	"start_url": "/index.html",
 	"orientation": "any",
 	"theme_color": "#171717",
 	"background_color": "#171717",
@@ -9,13 +9,13 @@
 	"display": "standalone",
 	"icons": [
 		{
-			"src": "img/icon-512.png",
+			"src": "/img/icon-512.png",
 			"sizes": "512x512",
 			"type": "image/png",
 			"purpose": "maskable"
 		},
 		{
-			"src": "img/icon-192.png",
+			"src": "/img/icon-192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}

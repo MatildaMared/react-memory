@@ -1,4 +1,9 @@
 const staticCacheName = "staticfiles";
+const filesToCache = [
+	"/index.html",
+	"/index.js",
+	"https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap",
+];
 
 addEventListener("install", (installEvent) => {
 	installEvent.waitUntil(
